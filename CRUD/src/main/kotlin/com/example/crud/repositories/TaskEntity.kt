@@ -6,12 +6,26 @@ import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 
 
-@Entity(name = "task")
-data class TaskEntity(
+@Entity(name = "autoren")
+data class Autoren(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long?,
-    var name: String,
-    var description: String,
-    var done: Boolean
+    var autorennummer: Long?,
+    var vorname: String,
+    var nachname: String,
+)
+@Entity(name = "verlage")
+data class Verlage(
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var verlagnummer: Long?,
+    var verlagname: String,
+)
+@Entity(name = "buecher")
+data class Buecher(
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var verlagnummer: Long?,
+    var autorennummer: Long?,
+    var buchname: String,
 )

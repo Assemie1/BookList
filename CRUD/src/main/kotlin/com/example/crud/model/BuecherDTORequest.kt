@@ -7,4 +7,9 @@ data class BuecherDTORequest(
     var isbn: Long,
     @JsonProperty("buchname")
     var buchname: String,
+    @JsonProperty("verlagnummer")
+    var verlagnummer: Long,
+    @JsonProperty("autornummer")
+    var autornummer: Long,
+
 )

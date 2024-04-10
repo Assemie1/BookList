@@ -7,6 +7,6 @@ data class AutorenDTOResponse(
     var vorname: String,
     @JsonProperty("nachname")
     var nachname: String,
-    @JsonProperty("autorennummer")
-    var autorennummer: Long,
+    @JsonProperty("autornummer")
+    var autornummer: Long,
 )

@@ -4,9 +4,9 @@ import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 
 @Repository
-interface TaskRepository : JpaRepository<Autoren, Long>
+interface AutorenRepository : JpaRepository<Autoren, Long>
 @Repository
-interface TaskRepository2 : JpaRepository<Verlage, Long>
+interface VerlageRepository : JpaRepository<Verlage, Long>
 @Repository
-interface TaskRepository3 : JpaRepository<Buecher, Long>
+interface BuecherRepository : JpaRepository<Buecher, Long>
 

@@ -38,14 +38,16 @@ class VerlageService (var repository: VerlageRepository, val VerlagToAutorServic
         }
 
 
-        return VerlageDTOResponse2(verlagnummer = save.verlagnummer!!, name = save.name,  autorVorname = vorname, autorNachname = nachname)
+        return VerlageDTOResponse2(verlagnummer = save.verlagnummer!!, name = save.name,  autorVorname = vorname, autorNachname = nachname, buecher = null)
     }
 
     fun getVerlag(verlagnummer: Long): Optional<VerlageDTOResponse2>? {
         val verlag = repository.findById(verlagnummer).orElse(null) ?: return null
         val autorVorname = verlag.autor.map { it.vorname }
         val autorNachname = verlag.autor.map { it.nachname }
-        return repository.findById(verlagnummer).map { VerlageDTOResponse2(verlagnummer = verlag.verlagnummer!!, name = verlag.name, autorVorname = autorVorname, autorNachname = autorNachname)}
+
+        val buecher = verlag.Verlagbuecher.map {it.buchname}
+        return repository.findById(verlagnummer).map { VerlageDTOResponse2(verlagnummer = verlag.verlagnummer!!, name = verlag.name, autorVorname = autorVorname, autorNachname = autorNachname, buecher = buecher)}
     }
 
 }

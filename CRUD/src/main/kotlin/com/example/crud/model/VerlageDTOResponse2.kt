@@ -10,5 +10,7 @@ data class VerlageDTOResponse2(
     @JsonProperty("autorVorname")
     var autorVorname: List<String>?,
     @JsonProperty("autorNachname")
-    var autorNachname: List<String>?
+    var autorNachname: List<String>?,
+    @JsonProperty("buecher")
+    var buecher: List<String>?,
 )

@@ -34,14 +34,16 @@ class AutorenService (var repository: AutorenRepository, var verlagrepository: V
             }
         }
 
-        return AutorenDTOResponse2(autornummer = save.autornummer!!, vorname = save.vorname, nachname = save.nachname, verlag = name)
+        return AutorenDTOResponse2(autornummer = save.autornummer!!, vorname = save.vorname, nachname = save.nachname, verlag = name, buecher = null)
     }
 
 
     fun getAutor(autornummer: Long): AutorenDTOResponse2? {
         val autor = repository.findById(autornummer).orElse(null) ?: return null
         val verlagName = autor.verlage.map { it.name }
-        return repository.findById(autornummer).map { AutorenDTOResponse2(autornummer = it.autornummer!!, vorname = it.vorname, nachname = it.nachname, verlag = verlagName)}.getOrNull()
+        val buecher = autor.Autorbuecher.map {it.buchname}
+
+        return repository.findById(autornummer).map { AutorenDTOResponse2(autornummer = it.autornummer!!, vorname = it.vorname, nachname = it.nachname, verlag = verlagName, buecher = buecher)}.getOrNull()
     }
 
 }

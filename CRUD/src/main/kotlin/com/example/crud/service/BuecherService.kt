@@ -8,6 +8,7 @@ import com.example.crud.repositories.Buecher
 import com.example.crud.repositories.BuecherRepository
 import com.example.crud.repositories.VerlageRepository
 import org.springframework.stereotype.Service
+import kotlin.jvm.optionals.getOrNull
 
 @Service
 class BuecherService (var repository: BuecherRepository, var verlagRepository: VerlageRepository, var autorRepository: AutorenRepository) {
@@ -21,10 +22,15 @@ class BuecherService (var repository: BuecherRepository, var verlagRepository: V
                 isbn = newBuch.isbn,
                 buchname = newBuch.buchname,
                 verlag = verlag,
-                autor = autor
+                autor = autor,
 
             )
         )
-        return BuecherDTOResponse(buchnummer = save.buchnummer!!, isbn = save.isbn, buchname = save.buchname)
+        return BuecherDTOResponse(buchnummer = save.buchnummer!!, isbn = save.isbn, buchname = save.buchname, verlagname = save.verlag?.name, autorvorname = save.autor?.vorname, autornachname = save.autor?.nachname)
     }
+
+    fun getBuch(buchnummer: Long): BuecherDTOResponse? {
+        return repository.findById(buchnummer).map { BuecherDTOResponse(buchnummer = it.buchnummer!!, buchname = it.buchname, isbn = it.isbn, verlagname = it.verlag?.name, autorvorname = it.autor?.vorname, autornachname = it.autor?.nachname) }.getOrNull()
+    }
+
 }

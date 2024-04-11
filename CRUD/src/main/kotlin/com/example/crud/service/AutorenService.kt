@@ -2,16 +2,16 @@ package com.example.crud.service
 
 import com.example.crud.repositories.Autoren
 import com.example.crud.repositories.AutorenRepository
-
 import com.example.crud.model.AutorenDTORequest
 import com.example.crud.model.AutorenDTOResponse
+import com.example.crud.model.AutorenDTOResponse2
 import com.example.crud.repositories.VerlageRepository
 import org.springframework.stereotype.Service
-import java.util.NoSuchElementException
+import kotlin.jvm.optionals.getOrNull
 
 @Service
-class AutorenService (var repository: AutorenRepository, var verlagrepository: VerlageRepository) {
-    fun createAutor(newAutor: AutorenDTORequest): AutorenDTOResponse {
+class AutorenService (var repository: AutorenRepository, var verlagrepository: VerlageRepository, val VerlagToAutorService: VerlagToAutorService) {
+    fun createAutor(newAutor: AutorenDTORequest): AutorenDTOResponse2 {
         val save = repository.save(
             Autoren(
                 autornummer = null,
@@ -20,22 +20,28 @@ class AutorenService (var repository: AutorenRepository, var verlagrepository: V
 
             )
         )
-        return AutorenDTOResponse(autornummer = save.autornummer!!, vorname = save.vorname, nachname = save.nachname)
-    }
 
-    fun VerlagToAutor(autornummer: Long, verlagnummer: Long) {
-        val autorOptional = repository.findById(autornummer)
-        val verlagOptional = verlagrepository.findById(verlagnummer)
+        val name = mutableListOf<String>()
 
-        if (autorOptional.isPresent && verlagOptional.isPresent) {
-            val autor  = autorOptional.get()
-            val verlag = verlagOptional.get()
-            autor.verlage.add(verlag)
-            repository.save(autor)
-        }else{
-            throw NoSuchElementException("Autor oder Verlag existiert nicht")
+        if (newAutor.verlag != null){
+            for(verlag in newAutor.verlag!!) {
+                VerlagToAutorService.VerlagToAutor(autornummer = save.autornummer!!, verlagnummer = verlag!!)
+            }
+
+            for(verlag in newAutor.verlag!!) {
+                val verlagname = verlagrepository.findById(verlag!!).orElse(null)
+                name.add(verlagname.name)
+            }
         }
 
+        return AutorenDTOResponse2(autornummer = save.autornummer!!, vorname = save.vorname, nachname = save.nachname, verlag = name)
+    }
+
+
+    fun getAutor(autornummer: Long): AutorenDTOResponse2? {
+        val autor = repository.findById(autornummer).orElse(null) ?: return null
+        val verlagName = autor.verlage.map { it.name }
+        return repository.findById(autornummer).map { AutorenDTOResponse2(autornummer = it.autornummer!!, vorname = it.vorname, nachname = it.nachname, verlag = verlagName)}.getOrNull()
     }
 
 }

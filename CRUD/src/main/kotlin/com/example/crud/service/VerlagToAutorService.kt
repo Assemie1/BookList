@@ -2,13 +2,9 @@ package com.example.crud.service
 
 
 import com.example.crud.repositories.AutorenRepository
-import com.example.crud.model.AutorenDTORequest
-import com.example.crud.model.AutorenDTOResponse
-import com.example.crud.model.AutorenDTOResponse2
 import com.example.crud.repositories.VerlageRepository
 import org.springframework.stereotype.Service
 import java.util.NoSuchElementException
-import kotlin.jvm.optionals.getOrNull
 
 @Service
 class VerlagToAutorService (var repository: AutorenRepository, var verlagrepository: VerlageRepository) {

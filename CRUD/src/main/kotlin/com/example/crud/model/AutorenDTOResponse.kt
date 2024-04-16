@@ -9,4 +9,8 @@ data class AutorenDTOResponse(
     var nachname: String,
     @JsonProperty("autornummer")
     var autornummer: Long,
+    @JsonProperty("verlag")
+    var verlag: List<String>?,
+    @JsonProperty("buecher")
+    var buecher: List<String>?,
 )

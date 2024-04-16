@@ -1,5 +1,6 @@
 package com.example.crud.repositories
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import jakarta.persistence.*
 
 @Entity(name = "autoren")
@@ -24,9 +25,11 @@ data class Verlage(
     var verlagnummer: Long?,
     var name: String,
     @ManyToMany(mappedBy = "verlage")
-    var autor: List<Autoren> = mutableListOf(),
+    @JsonIgnore
+    var autor: MutableList<Autoren> = mutableListOf(),
     @OneToMany(mappedBy = "verlag", cascade = [CascadeType.ALL])
-    var Verlagbuecher: List<Buecher> = mutableListOf()
+    @JsonIgnore
+    var Verlagbuecher: MutableList<Buecher> = mutableListOf()
 )
 @Entity(name = "buecher")
 data class Buecher(
@@ -37,8 +40,10 @@ data class Buecher(
     var buchname: String,
     @ManyToOne
     @JoinColumn(name = "verlagnummer")
+    @JsonIgnore
     var verlag: Verlage? = null,
     @ManyToOne
     @JoinColumn(name = "autornummer")
+    @JsonIgnore
     var autor: Autoren? = null
 )

@@ -1,0 +1,32 @@
+<div class="card my-5">
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Vorname</th>
+        <th scope="col">Nachname</th>
+        <th scope="col">Verlage</th>
+        <th scope="col">Bücher</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let autor of autors">
+        <td>{{ autor.autornummer }}</td>
+        <td>{{ autor.vorname }}</td>
+        <td>{{ autor.nachname }}</td>
+        <td>
+          <ul>
+            <li *ngFor="let verlage of autor.verlage">{{ verlage.name}}</li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li *ngFor="let buch of autor.autorbuecher">{{ buch.buchname }}</li>
+          </ul>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -4,6 +4,7 @@ import com.example.crud.repositories.Autoren
 import com.example.crud.repositories.AutorenRepository
 import com.example.crud.model.AutorenDTORequest
 import com.example.crud.model.AutorenDTOResponse
+import com.example.crud.model.VerlageDTORequest
 import com.example.crud.repositories.VerlageRepository
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException
 import org.springframework.stereotype.Service
@@ -11,30 +12,44 @@ import kotlin.jvm.optionals.getOrNull
 
 @Service
 class AutorenService (var repository: AutorenRepository, var verlagrepository: VerlageRepository, val VerlagToAutorService: VerlagToAutorService) {
-    fun createAutor(newAutor: AutorenDTORequest): AutorenDTOResponse {
+
+    data class Add(
+        var autornummer: Long?,
+        val vorname: String,
+        val nachname: String,
+        val verlag: MutableList<String>,
+        val buecher: MutableList<String>?,
+    )
+
+    fun addAutor(input: AutorenDTORequest, autornummer: Long?): Add{
         val save = repository.save(
             Autoren(
-                autornummer = null,
-                vorname = newAutor.vorname,
-                nachname = newAutor.nachname
+                autornummer = autornummer,
+                vorname = input.vorname,
+                nachname = input.nachname
 
             )
         )
 
         val name = mutableListOf<String>()
 
-        if (newAutor.verlag != null){
-            for(verlag in newAutor.verlag!!) {
+        if (input.verlag != null){
+            for(verlag in input.verlag!!) {
                 VerlagToAutorService.VerlagToAutor(autornummer = save.autornummer!!, verlagnummer = verlag!!)
             }
 
-            for(verlag in newAutor.verlag!!) {
+            for(verlag in input.verlag!!) {
                 val verlagname = verlagrepository.findById(verlag!!).orElse(null)
                 name.add(verlagname.name)
             }
         }
+        return Add(save.autornummer, save.vorname, save.nachname, name, buecher = null)
+    }
 
-        return AutorenDTOResponse(autornummer = save.autornummer!!, vorname = save.vorname, nachname = save.nachname, verlag = name, buecher = null)
+    fun createAutor(newAutor: AutorenDTORequest): AutorenDTOResponse {
+
+        val autor = addAutor(newAutor, autornummer = null)
+        return AutorenDTOResponse(autornummer = autor.autornummer!!, vorname = autor.vorname, nachname = autor.nachname, verlag = autor.verlag, buecher = null)
     }
 
 
@@ -47,31 +62,11 @@ class AutorenService (var repository: AutorenRepository, var verlagrepository: V
     }
 
     fun updateAutor(autornummer: Long, updateAutor: AutorenDTORequest): AutorenDTOResponse?{
-        val autor = repository.findById(autornummer).orElseThrow { throw IllegalArgumentException("Der Autor existiert nichty") }
+        val autor = repository.findById(autornummer).orElseThrow { throw IllegalArgumentException("Der Autor existiert nichtyyyyyyyyyyy") }
+        val buecher = autor.Autorbuecher.map { it.buchname }
         return repository.findById(autornummer).map {
-            val save = repository.save(
-                Autoren(
-                    autornummer = it.autornummer,
-                    vorname = updateAutor.vorname,
-                    nachname = updateAutor.nachname,
-                )
-
-            )
-            val buecher = autor.Autorbuecher.map { it.buchname }
-
-            val name = mutableListOf<String>()
-            if (updateAutor.verlag != null){
-                for(verlag in updateAutor.verlag!!) {
-                    VerlagToAutorService.VerlagToAutor(autornummer = save.autornummer!!, verlagnummer = verlag!!)
-                }
-
-                for(verlag in updateAutor.verlag!!) {
-                    val verlagname = verlagrepository.findById(verlag!!).orElse(null)
-                    name.add(verlagname.name)
-                }
-            }
-
-            AutorenDTOResponse (autornummer = save.autornummer!!, vorname = save.vorname, nachname = save.nachname, buecher = buecher, verlag = name )
+            val autor = addAutor(updateAutor, autornummer)
+            AutorenDTOResponse (autornummer = autor.autornummer!!, vorname = autor.vorname, nachname = autor.nachname, buecher = buecher, verlag = autor.verlag)
         }.orElseGet(null)
     }
 

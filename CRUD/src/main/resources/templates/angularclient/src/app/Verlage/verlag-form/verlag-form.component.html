@@ -1,0 +1,25 @@
+<div class="card my-5">
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit()" #verlagForm="ngForm">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" [(ngModel)]="verlag.name"
+               class="form-control"
+               id="name"
+               name="name"
+               placeholder="Name (REQUIRED)"
+               required #name="ngModel">
+      </div>
+      <div>
+      <input type="string" [(ngModel)]="inputAutoren"
+             class="form-control"
+             id="autoren"
+             name="autor"
+             placeholder="Autorennummer"
+             >
+      </div>
+      <button type="submit" [disabled]="!verlagForm.form.valid"
+              class="btn btn-info">Submit</button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+{
+  "autoren": [
+    {"vorname": "Andreas", "nachname": "Winkelmann"},
+    {"vorname": "Rebecca", "nachname": "Yarros"}
+  ],
+  "verlage": [
+    {"name": "Rowohlt"},
+    {"name": "DTV"}
+  ],
+  "buecher": [
+    {"isbn": 1234567890123, "titel": "Das Letzte was du Hoerst", "verlag": "Rowohlt", "autor": "Andreas Winkelmann"},
+    {"isbn": 9876543210987, "titel": "Fourth Wing", "verlag": "DTV", "autor": "Rebecca Yarros"},
+    {"isbn": 9876543210987, "titel": "Iron Flame", "verlag": "DTV", "autor": "Rebecca Yarros"}
+  ]
+}

@@ -1,0 +1,34 @@
+<div class="card my-5">
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit()" #autorForm="ngForm">
+      <div class="form-group">
+        <label for="vorname">Vorname</label>
+        <input type="text" [(ngModel)]="autor.vorname"
+               class="form-control"
+               id="vorname"
+               name="vorname"
+               placeholder="Vorname (REQUIRED)"
+               required #vorname="ngModel">
+      </div>
+      <div class="form-group">
+        <label for="nachname">Nachname</label>
+        <input type="text" [(ngModel)]="autor.nachname"
+               class="form-control"
+               id="nachname"
+               name="nachname"
+               placeholder="Nachname (REQUIRED)"
+               required #nachname="ngModel">
+      </div>
+      <div>
+        <input type="string" [(ngModel)]="inputVerlage"
+               class="form-control"
+               id="verlager"
+               name="verlage"
+               placeholder="Verlagnummern"
+        >
+      </div>
+      <button type="submit" [disabled]="!autorForm.form.valid"
+              class="btn btn-info">Submit</button>
+    </form>
+  </div>
+</div>

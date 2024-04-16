@@ -33,4 +33,13 @@ class BuecherService (var repository: BuecherRepository, var verlagRepository: V
         return repository.findById(buchnummer).map { BuecherDTOResponse(buchnummer = it.buchnummer!!, buchname = it.buchname, isbn = it.isbn, verlagname = it.verlag?.name, autorvorname = it.autor?.vorname, autornachname = it.autor?.nachname) }.getOrNull()
     }
 
+    fun deleteBuch(buchnummer: Long) {
+        val buch = repository.findById(buchnummer).orElseThrow{ throw IllegalArgumentException("Das Buch existiert garnicht du depp") }
+
+
+
+        repository.delete(buch)
+
+    }
+
 }

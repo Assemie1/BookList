@@ -42,6 +42,11 @@ class VerlageController(
         return VerlageService.getVerlag(verlagnummer)?: throw Error("Verlag wurde nicht gefunden")
     }
 
+    @PutMapping("/{verlagnummer}")
+    fun updateVerlag(@PathVariable verlagnummer: Long, @RequestBody updateVerlag: VerlageDTORequest): VerlageDTOResponse?{
+        return VerlageService.updateVerlag(verlagnummer, updateVerlag)
+    }
+
     @DeleteMapping("/{verlagnummer}")
     fun deleteVerlag(@PathVariable verlagnummer: Long){
         VerlageService.deleteVerlag(verlagnummer)

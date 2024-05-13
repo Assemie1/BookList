@@ -3,24 +3,28 @@ package com.example.crud.controller
 
 import com.example.crud.model.BuecherDTORequest
 import com.example.crud.model.BuecherDTOResponse
+import com.example.crud.repositories.Buecher
+import com.example.crud.repositories.BuecherRepository
+import com.example.crud.repositories.VerlageRepository
 import com.example.crud.service.BuecherService
-import org.springframework.web.bind.annotation.DeleteMapping
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.PutMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
-import java.lang.Error
+import org.springframework.web.bind.annotation.*
+import kotlin.jvm.optionals.getOrNull
 
 @RestController
+@CrossOrigin(origins = arrayOf("http://localhost:4200"))
 @RequestMapping("/buecher")
-class BuecherController (var BuecherService: BuecherService) {
+class BuecherController (var BuecherService: BuecherService, var bucherRepository: BuecherRepository) {
 
     @PostMapping("/create")
     fun createBuch(@RequestBody newBuch: BuecherDTORequest): BuecherDTOResponse {
         return BuecherService.createBuch(newBuch)
+    }
+
+    @GetMapping("/all")
+    fun getAllBuch(): List<BuecherDTOResponse>{
+        val bucher = bucherRepository.findAll()
+        return bucher.map { BuecherDTOResponse(buchnummer = it.buchnummer!!, buchname = it.buchname, isbn = it.isbn, verlagname = it.verlag?.name, autorvorname = it.autor?.vorname, autornachname = it.autor?.nachname, verlagnummer = it.verlag?.verlagnummer, autornummer = it.autor?.autornummer) }
+
     }
 
     @GetMapping("/{buchnummer}")
@@ -28,8 +32,10 @@ class BuecherController (var BuecherService: BuecherService) {
         return BuecherService.getBuch(buchnummer)?: throw Error("Buch nicht gefunden")
     }
 
-
-
+    @PutMapping("/{buchnummer}")
+    fun updateBuch(@PathVariable buchnummer: Long, @RequestBody input: BuecherDTORequest): BuecherDTOResponse?{
+        return BuecherService.updateBuch(buchnummer, input)
+    }
 
     @DeleteMapping("/{buchnummer}")
     fun deleteBuch(@PathVariable buchnummer: Long){

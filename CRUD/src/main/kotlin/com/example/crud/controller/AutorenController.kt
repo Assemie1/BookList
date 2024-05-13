@@ -8,7 +8,6 @@ import com.example.crud.service.AutorenService
 import com.example.crud.service.VerlagToAutorService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-import java.lang.Error
 
 @RestController
 @CrossOrigin(origins = arrayOf("http://localhost:4200"))
@@ -37,8 +36,8 @@ class AutorenController (var AutorenService: AutorenService, var VerlagToAutoren
     }
 
     @PutMapping("/{autornummer}")
-    fun updateAutor(@PathVariable autornummer: Long, @RequestBody updateAutor: AutorenDTORequest): AutorenDTOResponse? {
-        return AutorenService.updateAutor(autornummer, updateAutor)
+    fun updateAutor(@PathVariable autornummer: Long, @RequestBody input: AutorenDTORequest): AutorenDTOResponse? {
+        return AutorenService.updateAutor(autornummer, input)
     }
 
     @DeleteMapping("/{autornummer}")

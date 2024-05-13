@@ -1,34 +1,44 @@
-<div class="card my-5">
-  <div class="card-body">
-    <form (ngSubmit)="onSubmit()" #autorForm="ngForm">
-      <div class="form-group">
-        <label for="vorname">Vorname</label>
-        <input type="text" [(ngModel)]="autor.vorname"
-               class="form-control"
-               id="vorname"
-               name="vorname"
-               placeholder="Vorname (REQUIRED)"
-               required #vorname="ngModel">
-      </div>
-      <div class="form-group">
-        <label for="nachname">Nachname</label>
-        <input type="text" [(ngModel)]="autor.nachname"
-               class="form-control"
-               id="nachname"
-               name="nachname"
-               placeholder="Nachname (REQUIRED)"
-               required #nachname="ngModel">
-      </div>
-      <div>
-        <input type="string" [(ngModel)]="inputVerlage"
-               class="form-control"
-               id="verlager"
-               name="verlage"
-               placeholder="Verlagnummern"
-        >
-      </div>
-      <button type="submit" [disabled]="!autorForm.form.valid"
-              class="btn btn-info">Submit</button>
-    </form>
-  </div>
+<div class="container">
+  <mat-card class="card">
+    <mat-card-content>
+    <form (ngSubmit)="autorService.onSubmit(autor, inputVerlage, page, autornummer)" #autorForm="ngForm" class="autor-form">
+        <mat-form-field class="vorname">
+          <mat-label for="vorname">Vorname</mat-label>
+          <input matInput placeholder="Max"
+                 type="text"
+                 [(ngModel)]="autor.vorname"
+                 class="form-control"
+                 id="vorname"
+                 name="vorname"
+                 required #vorname="ngModel">
+        </mat-form-field>
+        <mat-form-field class="nachname">
+          <mat-label for="nachname">Nachname</mat-label>
+          <input matInput placeholder="Mustermann"
+                 type="text"
+                 [(ngModel)]="autor.nachname"
+                 class="form-control"
+                 id="nachname"
+                 name="nachname"
+                 required
+                 #nachname="ngModel">
+        </mat-form-field>
+        <p>
+        <mat-form-field class="verlagnummer">
+          <mat-label>Verlagnummern</mat-label>
+          <input matInput placeholder="1,2"
+                 type="text"
+                 [(ngModel)]="inputVerlage"
+                 class="form-control"
+                 id="verlage"
+                 name="verlage"
+                 #verlage="ngModel">
+        </mat-form-field>
+        </p>
+          <button mat-raised-button type="submit" color="primary" [disabled]="!autorForm.form.valid" class="btn btn-info">
+          Submit
+          </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
 </div>

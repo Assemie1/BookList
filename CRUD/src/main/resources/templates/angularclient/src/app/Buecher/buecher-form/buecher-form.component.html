@@ -1,0 +1,62 @@
+<div class="container">
+  <mat-card class="card">
+    <mat-card-content>
+      <form (ngSubmit)="buecherService.onSubmit(buch, page, buchnummer)" #buecherForm="ngForm">
+        <mat-form-field class="titel">
+          <mat-label>Titel</mat-label>
+          <input matInput
+                 type="text"
+                 [(ngModel)]="buch.buchname"
+                 class="form-control"
+                 id="name"
+                 name="name"
+                 placeholder="Die Bibel"
+                 required
+                 #buchname="ngModel">
+        </mat-form-field>
+        <p>
+          <mat-form-field class="isbn">
+            <mat-label>ISBN</mat-label>
+            <input matInput
+                   type="number"
+                   [(ngModel)]="buch.isbn"
+                   class="form-control"
+                   id="isbn"
+                   name="name"
+                   placeholder="3512730566293"
+                   required
+                   #isbn="ngModel">
+          </mat-form-field>
+        </p>
+          <mat-form-field class="autornummer">
+            <mat-label>Autornummer</mat-label>
+            <input matInput
+                   type="number"
+                   [(ngModel)]="buch.autornummer"
+                   class="form-control"
+                   id="autoren"
+                   name="autor"
+                   placeholder="1"
+                   #autor="ngModel">
+          </mat-form-field>
+
+          <mat-form-field class="verlagnummer">
+            <mat-label>Verlagnummer</mat-label>
+            <input matInput
+                   type="number"
+                   [(ngModel)]="buch.verlagnummer"
+                   class="form-control"
+                   id="verlage"
+                   name="autor"
+                   placeholder="2"
+                   #autor="ngModel">
+          </mat-form-field>
+        <p>
+        <button mat-raised-button type="submit" color="primary" [disabled]="!buecherForm.form.valid" class="btn btn-info">
+          Submit
+        </button>
+        </p>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

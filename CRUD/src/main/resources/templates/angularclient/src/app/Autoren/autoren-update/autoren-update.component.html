@@ -1,0 +1,45 @@
+<div class="container">
+  <mat-card class="card">
+    <mat-card-content>
+      <form (ngSubmit)="autorService.onSubmit(autor, inputVerlage, page, autornummer)" #autorForm="ngForm" class="form">
+        <mat-form-field class="vorname">
+          <mat-label for="vorname">Vorname</mat-label>
+          <input matInput placeholder="Max"
+                 type="text" [(ngModel)]="autor.vorname"
+                 class="form-control"
+                 id="vorname"
+                 name="vorname"
+                 required #vorname="ngModel">
+        </mat-form-field>
+        <mat-form-field class="nachname">
+          <mat-label for="nachname">Nachname</mat-label>
+          <input matInput placeholder="Mustermann"
+                 type="text" [(ngModel)]="autor.nachname"
+                 class="form-control"
+                 id="nachname"
+                 name="nachname"
+                 required #nachname="ngModel">
+        </mat-form-field>
+        <p>
+          <mat-form-field class="isbn">
+            <mat-label>Verlagnummern</mat-label>
+            <input matInput placeholder="1,2"
+                   type="string"
+                   [(ngModel)]="inputVerlage"
+                   class="form-control"
+                   id="verlager"
+                   name="verlage"
+                   #verlage="ngModel">
+          </mat-form-field>
+        </p>
+        <button mat-raised-button type="submit" color="primary" [disabled]="!autorForm.form.valid" class="btn btn-info">
+          Submit
+        </button>
+        <button mat-button color="warn" type="button" (click)="openDialog(object)" class="delete-button">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </form>
+
+    </mat-card-content>
+  </mat-card>
+</div>

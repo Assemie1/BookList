@@ -1,0 +1,42 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+               [mode]="(isHandset$ | async) ? 'over' : 'side'"
+               [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>
+      <mat-icon class="BookIcon" >
+          menu_book
+      </mat-icon>
+    </mat-toolbar>
+    <mat-nav-list>
+      <section>Autoren</section>
+      <a mat-list-item href="autoren/list" >Autorenliste</a>
+      <a mat-list-item href="autoren/create" >Autor erstellen</a>
+      <mat-divider></mat-divider>
+      <section>Verlage</section>
+      <a mat-list-item href="verlage/list">Verlageliste</a>
+      <a mat-list-item href="verlage/create" >Verlag erstellen</a>
+    </mat-nav-list>
+    <mat-nav-list>
+    <mat-divider></mat-divider>
+    <section>Bücher</section>
+    <a mat-list-item href="buecher/list">Bücherliste</a>
+      <a mat-list-item href="buecher/create">Bücher erstellen</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      @if (isHandset$ | async) {
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      }
+      <span>{{title}}</span>
+    </mat-toolbar>
+    <router-outlet />
+  </mat-sidenav-content>
+</mat-sidenav-container>

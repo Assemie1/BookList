@@ -12,25 +12,54 @@ import kotlin.jvm.optionals.getOrNull
 
 @Service
 class BuecherService (var repository: BuecherRepository, var verlagRepository: VerlageRepository, var autorRepository: AutorenRepository) {
-    fun createBuch(newBuch: BuecherDTORequest): BuecherDTOResponse {
-        val verlag = verlagRepository.findById(newBuch.verlagnummer).orElse(null)
-        val autor = autorRepository.findById(newBuch.autornummer).orElse(null)
+
+
+    data class Add(
+        var buchnummer: Long,
+        val isbn: Long,
+        val buchname: String,
+        val verlag: String?,
+        val vorname: String?,
+        val nachname: String?
+    )
+
+    fun addBuch(input: BuecherDTORequest, buchnummer: Long?): Add{
+        val verlag = verlagRepository.findById(input.verlagnummer).orElse(null)
+        val autor = autorRepository.findById(input.autornummer).orElse(null)
 
         val save = repository.save(
             Buecher(
-                buchnummer = null,
-                isbn = newBuch.isbn,
-                buchname = newBuch.buchname,
+                buchnummer = buchnummer,
+                isbn = input.isbn,
+                buchname = input.buchname,
                 verlag = verlag,
                 autor = autor,
 
-            )
+                )
         )
-        return BuecherDTOResponse(buchnummer = save.buchnummer!!, isbn = save.isbn, buchname = save.buchname, verlagname = save.verlag?.name, autorvorname = save.autor?.vorname, autornachname = save.autor?.nachname)
+        val name = save.verlag?.name
+        val vorname = save.autor?.vorname
+        val nachname = save.autor?.nachname
+
+        return Add(save.buchnummer!!, save.isbn, save.buchname, name, vorname, nachname)
+    }
+
+    fun createBuch(newBuch: BuecherDTORequest): BuecherDTOResponse {
+
+        val buch = addBuch(newBuch, null)
+
+        return BuecherDTOResponse(buchnummer = buch.buchnummer!!, isbn = buch.isbn, buchname = buch.buchname, verlagname = buch.verlag, autorvorname = buch.vorname, autornachname = buch.nachname, verlagnummer = newBuch.verlagnummer, autornummer = newBuch.autornummer)
     }
 
     fun getBuch(buchnummer: Long): BuecherDTOResponse? {
-        return repository.findById(buchnummer).map { BuecherDTOResponse(buchnummer = it.buchnummer!!, buchname = it.buchname, isbn = it.isbn, verlagname = it.verlag?.name, autorvorname = it.autor?.vorname, autornachname = it.autor?.nachname) }.getOrNull()
+        return repository.findById(buchnummer).map { BuecherDTOResponse(buchnummer = it.buchnummer!!, buchname = it.buchname, isbn = it.isbn, verlagname = it.verlag?.name, autorvorname = it.autor?.vorname, autornachname = it.autor?.nachname, verlagnummer = it.verlag?.verlagnummer, autornummer = it.autor?.autornummer) }.getOrNull()
+    }
+
+    fun updateBuch(buchnummer: Long, input: BuecherDTORequest): BuecherDTOResponse?{
+        return repository.findById(buchnummer).map {
+            val buch = addBuch(input, buchnummer)
+            BuecherDTOResponse(buchnummer = buch.buchnummer!!, isbn = buch.isbn, buchname = buch.buchname, verlagname = buch.verlag, autorvorname = buch.vorname, autornachname = buch.nachname, verlagnummer = it.verlag?.verlagnummer, autornummer = it.autor?.autornummer)
+        }.orElseGet(null)
     }
 
     fun deleteBuch(buchnummer: Long) {

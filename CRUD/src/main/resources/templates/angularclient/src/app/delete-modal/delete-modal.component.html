@@ -1,0 +1,11 @@
+<mat-dialog-content class="delete-modal">
+  <p>Möchtest du "{{object}}" wirklich löschen?</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button type="delete" (click)="onDelete()" class="delete-button">
+    <mat-icon>delete</mat-icon>
+  </button>
+  <button mat-button matDialogClose class="nein">
+    Nein
+  </button>
+</mat-dialog-actions>

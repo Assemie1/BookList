@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import {ActivatedRoute, Router, RouterModule} from '@angular/router';
-import {Autor, Verlag} from "../model/autor";
+import {Autor} from "../model/autor";
 import {AutorServiceService} from "../sevice/autor-service.service";
+
 
 @Component({
   selector: 'app-ator-form',
@@ -11,26 +11,17 @@ import {AutorServiceService} from "../sevice/autor-service.service";
 })
 export class AutorFormComponent {
   autor: Autor;
-  inputVerlage: string;
-  verlage: number[];
+  inputVerlage: string = "";
+  page: string ="create"
+  autornummer = null
 
   constructor(
-    private route: ActivatedRoute,
-      private router: Router,
-        private autorService: AutorServiceService) {
+
+    public autorService: AutorServiceService,
+
+  ) {
     this.autor = new Autor();
   }
 
-  inputToArray(){
-    this.verlage = this.inputVerlage.split(',').map(id => parseInt(id.trim(), 10))
-    this.autor.verlag = this.verlage
-  }
-  onSubmit(){
-    this.inputToArray()
-    this.autorService.save(this.autor).subscribe();
-    this.autor.nachname = '';
-    this.autor.vorname = '';
-    this.inputVerlage = '';
-  }
 
 }

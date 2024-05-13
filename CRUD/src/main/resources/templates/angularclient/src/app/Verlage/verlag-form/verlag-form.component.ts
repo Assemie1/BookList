@@ -11,25 +11,17 @@ import {Verlagservice} from "../service/verlagservice.service";
 export class VerlagFormComponent {
 
   verlag: Verlag;
-  inputAutoren: string;
+  inputAutoren: string ="";
   autoren: number[]
+  page: string = "create"
+  verlagnummer:number = null
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private verlagService: Verlagservice  ) {
+    public verlagService: Verlagservice  ) {
     this.verlag = new Verlag();
   }
 
-  inputToArray(){
-    this.autoren = this.inputAutoren.split(',').map(id => parseInt(id.trim(), 10))
-    this.verlag.autor = this.autoren
-  }
-  onSubmit(){
-    this.inputToArray()
-
-    this.verlagService.save(this.verlag).subscribe();
-    this.verlag.name='';    this.inputAutoren='';
-  }
 
 }

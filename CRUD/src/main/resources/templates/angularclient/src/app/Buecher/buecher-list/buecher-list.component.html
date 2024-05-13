@@ -1,0 +1,40 @@
+<mat-form-field>
+  <mat-label>Suche</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Bible" #input>
+</mat-form-field>
+
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <ng-container matColumnDef="buchnummer">
+    <th mat-header-cell *matHeaderCellDef> ID </th>
+    <td mat-cell *matCellDef="let element"> {{element.buchnummer}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="buchname">
+    <th mat-header-cell *matHeaderCellDef> Titel </th>
+    <td mat-cell *matCellDef="let element"> {{element.buchname}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="isbn">
+    <th mat-header-cell *matHeaderCellDef> ISBN </th>
+    <td mat-cell *matCellDef="let element"> {{element.isbn}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="autor">
+    <th mat-header-cell *matHeaderCellDef> Autor </th>
+    <td mat-cell *matCellDef="let element"> {{element.autorvorname + " " + element.autornachname}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="verlagname">
+    <th mat-header-cell *matHeaderCellDef> Verlag </th>
+    <td mat-cell *matCellDef="let element"> {{element.verlagname}} </td>
+  </ng-container>
+
+
+  <tr mat-header-row *matHeaderRowDef="displayColumn"></tr>
+  <tr mat-row
+      (click)="editRow(row)"
+      *matRowDef="let row; columns: displayColumn;"></tr>
+
+</table>
+

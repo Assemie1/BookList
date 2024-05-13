@@ -25,7 +25,8 @@ class DataLoader(private val autorenRepository: AutorenRepository,
 
         val buch1 = Buecher(null, 1234567890123, "Das Letzte was du Hoerst", verlag1, autor1)
         val buch2 = Buecher(null, 9876543210987, "Fourth Wing", verlag2, autor2)
-        val buch3 = Buecher(null, 9876543210987, "Iron Flame", verlag2, autor2)
-        buecherRepository.saveAll(listOf(buch1, buch2, buch3))
+        val buch3 = Buecher(null, 9876543210988, "Iron Flame", verlag2, autor2)
+        val buch4 = Buecher(null, 77777777, "Dest", verlag1, autor2)
+        buecherRepository.saveAll(listOf(buch1, buch2, buch3, buch4))
     }
 }

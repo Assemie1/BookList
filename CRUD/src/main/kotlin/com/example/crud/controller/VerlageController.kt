@@ -8,7 +8,6 @@ import com.example.crud.service.VerlagToAutorService
 import com.example.crud.service.VerlageService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
-import java.lang.Error
 import java.util.*
 
 @RestController
@@ -43,8 +42,8 @@ class VerlageController(
     }
 
     @PutMapping("/{verlagnummer}")
-    fun updateVerlag(@PathVariable verlagnummer: Long, @RequestBody updateVerlag: VerlageDTORequest): VerlageDTOResponse?{
-        return VerlageService.updateVerlag(verlagnummer, updateVerlag)
+    fun updateVerlag(@PathVariable verlagnummer: Long, @RequestBody input: VerlageDTORequest): VerlageDTOResponse?{
+        return VerlageService.updateVerlag(verlagnummer, input)
     }
 
     @DeleteMapping("/{verlagnummer}")

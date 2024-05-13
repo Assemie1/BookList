@@ -1,0 +1,38 @@
+<div class="container">
+  <mat-card class="card">
+    <mat-card-content>
+      <form (ngSubmit)="verlagService.onSubmit(verlag, inputAutoren, page, verlagnummer)" #verlagForm="ngForm">
+        <mat-form-field class="name">
+          <mat-label>Name</mat-label>
+          <input matInput
+                 type="text" [(ngModel)]="verlag.name"
+                 class="form-control"
+                 id="name"
+                 name="name"
+                 placeholder="DTV"
+                 required #name="ngModel">
+        </mat-form-field>
+        <p>
+          <mat-form-field class="autornummer">
+            <mat-label>Autornummer</mat-label>
+            <input matInput
+                   type="string" [(ngModel)]="inputAutoren"
+                   class="form-control"
+                   id="autoren"
+                   name="autor"
+                   placeholder="1,2"
+                   #autor="ngModel">
+          </mat-form-field>
+        </p>
+        <button mat-raised-button type="submit"  color="primary"  [disabled]="!verlagForm.form.valid" class="submitt-button">
+          Submit
+        </button>
+        <button mat-button color="warn" type="button" (click)="openDialog(object)" class="delete-button">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </form>
+
+    </mat-card-content>
+  </mat-card>
+</div>
+

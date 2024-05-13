@@ -1,0 +1,32 @@
+.container{
+  display: flex;
+  justify-content: center;
+}
+
+.card{
+  width: 550px;
+
+}
+.autor-form{
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+  padding: 1%;
+}
+
+.vorname {
+  width: 48%;
+
+}
+
+.nachname {
+  width: 48%;
+  padding-left: 4%;
+}
+
+
+.verlagnummer{
+  width: 100%;
+
+
+}

@@ -3,6 +3,7 @@ package com.example.crud.service
 
 import com.example.crud.model.VerlageDTORequest
 import com.example.crud.model.VerlageDTOResponse
+import com.example.crud.repositories.Autoren
 import com.example.crud.repositories.AutorenRepository
 import com.example.crud.repositories.Verlage
 import com.example.crud.repositories.VerlageRepository
@@ -51,6 +52,7 @@ class VerlageService (var repository: VerlageRepository, val VerlagToAutorServic
         return VerlageDTOResponse(verlagnummer = verlag.verlagnummer!!, name = verlag.name,  autorVorname = verlag.vorname, autorNachname = verlag.nachname, buecher = null)
     }
 
+
     fun getVerlag(verlagnummer: Long): Optional<VerlageDTOResponse>? {
         val verlag = repository.findById(verlagnummer).orElse(null) ?: return null
         val autorVorname = verlag.autor.map { it.vorname }
@@ -60,15 +62,29 @@ class VerlageService (var repository: VerlageRepository, val VerlagToAutorServic
         return repository.findById(verlagnummer).map { VerlageDTOResponse(verlagnummer = verlag.verlagnummer!!, name = verlag.name, autorVorname = autorVorname, autorNachname = autorNachname, buecher = buecher)}
     }
 
-    fun updateVerlag(verlagnummer: Long, updateVerlag: VerlageDTORequest): VerlageDTOResponse?{
-        val verlag = repository.findById(verlagnummer).orElseThrow { throw java.lang.IllegalArgumentException("Da funktionuggelt was nicht")}
+    fun updateVerlag(verlagnummer: Long, input: VerlageDTORequest): VerlageDTOResponse?{
+
+        val verlag = repository.findById(verlagnummer).orElseThrow { throw IllegalArgumentException("Da funktionuggelt was nicht")}
+
+        verlag.autor.forEach{autor ->
+            autor.verlage.remove(verlag)
+        }
+        verlag.autor.clear()
+
         val buecher = verlag.Verlagbuecher.map {it.buchname}
         return repository.findById(verlagnummer).map {
-            val verlag = addVerlag(updateVerlag, verlagnummer)
-            VerlageDTOResponse (name = verlag.name, verlagnummer = verlag.verlagnummer!!, autorVorname = verlag.vorname, autorNachname = verlag.nachname, buecher = buecher)
+            val verlag = addVerlag(input, verlagnummer)
+            VerlageDTOResponse (
+                name = verlag.name,
+                verlagnummer = verlag.verlagnummer!!,
+                autorVorname = verlag.vorname,
+                autorNachname = verlag.nachname,
+                buecher = buecher)
         }.orElseGet(null)
 
     }
+
+
 
     fun deleteVerlag(verlagnummer: Long) {
         val verlag = repository.findById(verlagnummer)

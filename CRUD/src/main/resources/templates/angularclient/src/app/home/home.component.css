@@ -1,0 +1,84 @@
+.start-card {
+  position: relative;
+  width: 100%;
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.3);
+  color: white;
+  font-size: 2vw;
+  font-weight: bolder;
+  text-align: center;
+}
+
+.text {
+  font-size: 1.5em; /* Adjust as needed */
+  padding: 10px; /* Optional: Padding for the text */
+}
+
+.neuen{
+  width: 100%;
+  margin: 1%;
+}
+
+.neuen mat-card-title{
+  font-size: 1.25vw;
+}
+
+
+.Overview{
+  display: flex;
+  justify-content: space-between;
+  margin: 1%;
+}
+
+mat-card-title{
+  padding: 1%;
+  text-align: center;
+}
+
+mat-card-content {
+  flex: 1 0 auto;
+}
+
+mat-card{
+  width: 30%;
+}
+
+.tabelle{
+  max-height: 248px;
+  overflow: hidden;
+}
+
+mat-divider{
+  margin-top: 5%;
+  height: 5px;
+}
+
+.knopf{
+  display: flex;
+  margin: 5%;
+  justify-content: center;
+  align-items: flex-end;
+
+}
+
+

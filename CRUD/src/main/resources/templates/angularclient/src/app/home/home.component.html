@@ -1,0 +1,120 @@
+
+<div class="start-card">
+  <div class="image-container">
+    <img mat-card-image src="assets/library.jpg" alt="Library">
+    <div class="overlay">
+      <div class="text">Deine Tür zur Welt der Bücher</div>
+    </div>
+  </div>
+</div>
+
+<mat-card class="neuen">
+  <mat-card-title>
+    Die neusten Einträge
+  </mat-card-title>
+</mat-card>
+
+<div class="Overview">
+  <mat-card class="Autoren">
+    <mat-card-title>
+      Autoren
+    </mat-card-title>
+
+    <mat-card-content>
+      <div class="tabelle">
+      <a routerLink="/autoren/list">
+        <table mat-table [dataSource]="dataSourceAutor" class="mat-elevation-z8">
+
+          <ng-container matColumnDef="vorname">
+            <th mat-header-cell *matHeaderCellDef> Vorname </th>
+            <td mat-cell *matCellDef="let element"> {{element.vorname}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="nachname">
+            <th mat-header-cell *matHeaderCellDef> Nachname </th>
+            <td mat-cell *matCellDef="let element"> {{element.nachname}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayColumnAutor"></tr>
+          <tr mat-row
+              *matRowDef="let row; columns: displayColumnAutor;"></tr>
+        </table>
+        </a>
+      </div>
+    </mat-card-content>
+    <mat-divider class="divider"></mat-divider>
+    <mat-card-actions class="knopf">
+      <button mat-raised-button type="button" color="primary" routerLink="/autoren/create" class="autor-create">
+        Neuer Autor
+      </button>
+    </mat-card-actions>
+
+  </mat-card>
+
+
+  <mat-card class="Verlage">
+    <mat-card-title>
+      Verlage
+    </mat-card-title>
+    <mat-card-content>
+      <div class="tabelle">
+        <a routerLink="/verlage/list">
+        <table mat-table [dataSource]="dataSourceVerlag" class="mat-elevation-z8">
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Verlagname </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayColumnVerlag"></tr>
+          <tr mat-row
+              *matRowDef="let row; columns: displayColumnVerlag;"></tr>
+
+        </table>
+        </a>
+      </div>
+    </mat-card-content>
+    <mat-divider class="divider"></mat-divider>
+    <mat-card-actions class="knopf">
+      <button mat-raised-button type="button" color="primary" routerLink="/verlage/create" class="autor-create">
+        Neuer Verlag
+      </button>
+    </mat-card-actions>
+  </mat-card>
+
+
+  <mat-card class="Bücher">
+
+    <mat-card-title>
+      Bücher
+    </mat-card-title>
+    <mat-card-content>
+      <div class="tabelle">
+        <a routerLink="/buecher/list">
+        <table mat-table [dataSource]="dataSourceBuch" class="mat-elevation-z8">
+          <ng-container matColumnDef="buchname">
+            <th mat-header-cell *matHeaderCellDef> Titel </th>
+            <td mat-cell *matCellDef="let element"> {{element.buchname}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="autor">
+            <th mat-header-cell *matHeaderCellDef> Autor </th>
+            <td mat-cell *matCellDef="let element"> {{element.autorvorname + " " + element.autornachname}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayColumnBuch"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayColumnBuch;"></tr>
+        </table>
+        </a>
+      </div>
+    </mat-card-content>
+    <mat-divider class="divider"></mat-divider>
+    <mat-card-actions class="knopf">
+      <button mat-raised-button type="button" color="primary" routerLink="/buecher/create" class="autor-create">
+        Neues Buch
+      </button>
+    </mat-card-actions>
+  </mat-card>
+
+
+</div>

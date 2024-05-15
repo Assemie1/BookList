@@ -3,7 +3,6 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Buecher} from "../buecher";
 import {Router} from "@angular/router";
-import {GeneralService} from "../../general-service/general-service";
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +15,6 @@ export class BuecherService {
   constructor(
     private http:HttpClient,
     public router: Router,
-    private generalService: GeneralService,
   ) {
     this.bucherUrlBase = "http://localhost:8080/buecher/"
 
@@ -37,7 +35,9 @@ export class BuecherService {
     this.bucherUrl = this.bucherUrlBase+buchnummer.toString()
     return this.http.get<Buecher>(this.bucherUrl)
   }
+
   public update(buch: Buecher, buchnummer){
+    console.log(buch)
     this.bucherUrl = this.bucherUrlBase+buchnummer.toString()
     return this.http.put<Buecher>(this.bucherUrl, buch)
   }
@@ -55,6 +55,7 @@ export class BuecherService {
       buch.isbn = null;
       buch.verlagnummer = null;
       buch.autornummer = null;
+      buch.beschreibung = "";
     } else {
       this.update(buch, buchnummer).subscribe();
       this.router.navigate(['buecher/list'])

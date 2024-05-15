@@ -13,14 +13,13 @@ export class BuecherFormComponent {
   buch: Buecher;
   page: string ="create"
   buchnummer = null
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     public buecherService: BuecherService ) {
     this.buch = new Buecher();
   }
-
-
 
 
 }

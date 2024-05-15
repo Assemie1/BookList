@@ -23,10 +23,10 @@ class DataLoader(private val autorenRepository: AutorenRepository,
         autor2.verlage.add(verlag2)
         autorenRepository.saveAll(listOf(autor1, autor2))
 
-        val buch1 = Buecher(null, 1234567890123, "Das Letzte was du Hoerst", verlag1, autor1)
-        val buch2 = Buecher(null, 9876543210987, "Fourth Wing", verlag2, autor2)
-        val buch3 = Buecher(null, 9876543210988, "Iron Flame", verlag2, autor2)
-        val buch4 = Buecher(null, 77777777, "Dest", verlag1, autor2)
+        val buch1 = Buecher(null, 1234567890123, "Das Letzte was du Hoerst", "Irgendwas mit nem komischen Podcaster", verlag1, autor1)
+        val buch2 = Buecher(null, 9876543210987, "Fourth Wing", "Flieg oder Stirb", verlag2, autor2)
+        val buch3 = Buecher(null, 9876543210988, "Iron Flame", "Veneni, Wyvern und Eisesrneflammen", verlag2, autor2)
+        val buch4 = Buecher(null, 77777777, "Dest", "das is nen dest", verlag1, autor2)
         buecherRepository.saveAll(listOf(buch1, buch2, buch3, buch4))
     }
 }

@@ -1,5 +1,5 @@
 export class Verlag {
-  verlagnummer: string;
+  verlagnummer: number;
   name: string;
 
   autor: number[];

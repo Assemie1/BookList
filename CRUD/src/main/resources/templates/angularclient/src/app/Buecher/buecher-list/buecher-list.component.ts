@@ -35,8 +35,8 @@ export class BuecherListComponent {
   }
 
   editRow(buch){
-    this.buch = buch
-    this.router.navigate(['buecher/update', buch])
+    const buchnummer = buch.buchnummer
+    this.router.navigate(['buecher/update', buchnummer])
   }
 
 }

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="Overview">
   <mat-card class="card">
     <mat-card-content>
       <form (ngSubmit)="buecherService.onSubmit(buch, page, buchnummer)" #buecherForm="ngForm">
@@ -51,6 +51,19 @@
                    placeholder="2"
                    #autor="ngModel">
           </mat-form-field>
+        <mat-form-field class="textarea">
+          <mat-label>Beschreibung</mat-label>
+            <textarea matInput
+                      cdkTextareaAutosize
+                      placeholder="Klappentext oder so"
+                      [(ngModel)] = "buch.beschreibung"
+                      id = "beschreibung"
+                      name = "beschreibung"
+                      #beschreibung="ngModel">
+
+            </textarea>
+        </mat-form-field>
+
         <p>
         <button mat-raised-button type="submit" color="primary" [disabled]="!buecherForm.form.valid" class="btn btn-info">
           Submit

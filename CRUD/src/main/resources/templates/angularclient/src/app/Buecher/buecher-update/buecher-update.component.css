@@ -1,9 +1,10 @@
-.container{
+.Overview{
   display: flex;
   justify-content: center;
 }
 
 .card{
+  margin: 1%;
   width: 550px;
 
 }
@@ -28,6 +29,10 @@
 .verlagnummer{
   padding-left: 4%;
   width: 48%;
+}
+
+.textarea{
+  width: 100%;
 }
 
 .submitt-button{

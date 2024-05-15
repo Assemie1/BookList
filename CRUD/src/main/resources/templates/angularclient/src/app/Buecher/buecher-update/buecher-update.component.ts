@@ -19,6 +19,8 @@ export class BuecherUpdateComponent {
   page: string = "update"
 
   buch;
+  buchtext;
+  beschreibung: string;
   autoren: number[];
 
   object: string;
@@ -39,10 +41,6 @@ export class BuecherUpdateComponent {
   ngOnInit(){
     this.route.params.subscribe(params => {
       this.buchnummer = +params['buchnummer']
-      this.buch.buchname = params['buchname']
-      this.buch.isbn = params['isbn']
-      this.buch.autornummer = params['autornummer']
-      this.buch.verlagnummer = params['verlagnummer']
       this.object = this.buch.buchname
 
       this.buecherService.get(this.buchnummer).subscribe( data =>{
@@ -50,6 +48,8 @@ export class BuecherUpdateComponent {
       })
 
     })
+
+
   }
 
 
@@ -66,6 +66,7 @@ export class BuecherUpdateComponent {
     this.buecherService.delete((this.buchnummer))
     this.router.navigate(['buecher/list'])
   }
+
 
 }
 

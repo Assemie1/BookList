@@ -7,7 +7,7 @@ export class Buch {
 }
 
 export class Autor {
-  autornummer: string;
+  autornummer: number;
   vorname: string;
   nachname: string;
   verlage: Verlag[];

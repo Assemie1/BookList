@@ -29,7 +29,6 @@ export class AutorenUpdateComponent {
     private route: ActivatedRoute,
     private router: Router,
     public autorService: AutorServiceService,
-    private generalService: GeneralService,
 
   ) {
     this.autor = new Autor();

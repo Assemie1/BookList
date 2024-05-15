@@ -15,7 +15,7 @@ import { MatToolbarModule} from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatInputModule} from '@angular/material/input';
-import { MatButton} from "@angular/material/button";
+import {MatButton, MatFabButton} from "@angular/material/button";
 
 import { SidenavComponent } from './sidenav/sidenav.component';
 import {AutorServiceService} from "./Autoren/sevice/autor-service.service";
@@ -34,7 +34,8 @@ import { AutorenUpdateComponent } from './Autoren/autoren-update/autoren-update.
 import { VerlagUpdateComponent } from './Verlage/verlag-update/verlag-update.component';
 import { DeleteModalComponent } from './delete-modal/delete-modal.component';
 import { WrongInputComponent } from './wrong-input/wrong-input.component';
-import {MatCard, MatCardContent} from "@angular/material/card";
+import {MatCard, MatCardActions, MatCardContent, MatCardImage, MatCardTitle} from "@angular/material/card";
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import {MatCard, MatCardContent} from "@angular/material/card";
     AutorenUpdateComponent,
     VerlagUpdateComponent,
     DeleteModalComponent,
-    WrongInputComponent
+    WrongInputComponent,
+    HomeComponent
   ],
     imports: [
         BrowserModule,
@@ -73,6 +75,9 @@ import {MatCard, MatCardContent} from "@angular/material/card";
         MatDialogClose,
         MatCard,
         MatCardContent,
+        MatCardTitle,
+        MatCardActions,
+        MatCardImage,
     ],
   providers: [AutorServiceService, Verlagservice, provideAnimationsAsync()],
   bootstrap: [AppComponent]

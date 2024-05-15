@@ -2,6 +2,9 @@ export class Buecher {
   buchname: string;
 
   isbn: number;
+  buchnummer: number;
+
+  beschreibung: string;
 
   autornummer: number;
 

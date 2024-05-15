@@ -9,6 +9,8 @@ data class BuecherDTOResponse(
     var isbn: Long,
     @JsonProperty("buchname")
     var buchname: String,
+    @JsonProperty("beschreibung")
+    var beschreibung: String?,
     @JsonProperty("verlagnummer")
     var verlagnummer: Long?,
     @JsonProperty("autornummer")

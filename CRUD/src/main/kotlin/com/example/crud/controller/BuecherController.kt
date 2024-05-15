@@ -23,7 +23,7 @@ class BuecherController (var BuecherService: BuecherService, var bucherRepositor
     @GetMapping("/all")
     fun getAllBuch(): List<BuecherDTOResponse>{
         val bucher = bucherRepository.findAll()
-        return bucher.map { BuecherDTOResponse(buchnummer = it.buchnummer!!, buchname = it.buchname, isbn = it.isbn, verlagname = it.verlag?.name, autorvorname = it.autor?.vorname, autornachname = it.autor?.nachname, verlagnummer = it.verlag?.verlagnummer, autornummer = it.autor?.autornummer) }
+        return bucher.map { BuecherDTOResponse(buchnummer = it.buchnummer!!, buchname = it.buchname, isbn = it.isbn, beschreibung = it.beschreibung, verlagname = it.verlag?.name, autorvorname = it.autor?.vorname, autornachname = it.autor?.nachname, verlagnummer = it.verlag?.verlagnummer, autornummer = it.autor?.autornummer) }
 
     }
 

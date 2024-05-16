@@ -36,6 +36,7 @@ import { DeleteModalComponent } from './delete-modal/delete-modal.component';
 import { WrongInputComponent } from './wrong-input/wrong-input.component';
 import {MatCard, MatCardActions, MatCardContent, MatCardImage, MatCardTitle} from "@angular/material/card";
 import { HomeComponent } from './home/home.component';
+import { UpdateModalComponent } from './Buecher/update-modal/update-modal.component';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import { HomeComponent } from './home/home.component';
     VerlagUpdateComponent,
     DeleteModalComponent,
     WrongInputComponent,
-    HomeComponent
+    HomeComponent,
+    UpdateModalComponent
   ],
     imports: [
         BrowserModule,

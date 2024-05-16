@@ -1,55 +1,87 @@
+.container-detail{
+  display: flex;
+  justify-content: space-evenly;
+
+}
+
+mat-card{
+  margin: 1%;
+  min-width: 30%;
+}
+
+mat-card-title{
+  margin: 10px 10px 0;
+  font-size: max(0.75vw, 16px);
+}
+
+mat-card-content{
+  margin: 10px;
+  font-size: max(1vw, 16px);
+}
+
+mat-divider{
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
 .Overview{
   display: flex;
   justify-content: center;
 }
 
-.card{
+.button-edit{
   margin: 1%;
-  width: 550px;
-
-}
-.form{
-  float: top;
 }
 
-.titel {
-  width: 100%;
+@media (max-width: 599px) {
+  .container-detail{
+    flex-direction: column;
+  }
 
 }
 
-.isbn {
-  width: 100%;
-}
+/*.form{*/
+/*  float: top;*/
+/*}*/
+
+/*.titel {*/
+/*  width: 100%;*/
+
+/*}*/
+
+/*.isbn {*/
+/*  width: 100%;*/
+/*}*/
 
 
-.autornummer{
-  width: 48%;
-}
+/*.autornummer{*/
+/*  width: 48%;*/
+/*}*/
 
-.verlagnummer{
-  padding-left: 4%;
-  width: 48%;
-}
+/*.verlagnummer{*/
+/*  padding-left: 4%;*/
+/*  width: 48%;*/
+/*}*/
 
-.textarea{
-  width: 100%;
-}
+/*.textarea{*/
+/*  width: 100%;*/
+/*}*/
 
-.submitt-button{
-  float: left;
-}
+/*.submitt-button{*/
+/*  float: left;*/
+/*}*/
 
-.delete-button {
-  float: right;
-  padding: 0;
-}
+/*.delete-button {*/
+/*  float: right;*/
+/*  padding: 0;*/
+/*}*/
 
-.delete-button mat-icon {
-  width: 100%;
-  height: 100%;
-  font-size: 40px;
-  margin: 0;
-}
+/*.delete-button mat-icon {*/
+/*  width: 100%;*/
+/*  height: 100%;*/
+/*  font-size: 40px;*/
+/*  margin: 0;*/
+/*}*/
 
 
 

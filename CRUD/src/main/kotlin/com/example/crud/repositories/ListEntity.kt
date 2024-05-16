@@ -43,6 +43,7 @@ data class Buecher(
     var buchnummer: Long?,
     var isbn: Long,
     var buchname: String,
+    @Column(columnDefinition = "TEXT")
     var beschreibung: String? =null,
     @ManyToOne
     @JoinColumn(name = "verlagnummer")

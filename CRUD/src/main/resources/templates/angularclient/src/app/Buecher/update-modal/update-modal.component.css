@@ -1,0 +1,52 @@
+.Overview{
+  display: flex;
+  justify-content: center;
+}
+
+mat-card{
+  margin: 1%;
+  width: 550px;
+
+}
+.form{
+  float: top;
+}
+
+.titel {
+  width: 100%;
+
+}
+
+.isbn {
+  width: 100%;
+}
+
+
+.autornummer{
+  width: 48%;
+}
+
+.verlagnummer{
+  padding-left: 4%;
+  width: 48%;
+}
+
+.textarea{
+  width: 100%;
+}
+
+.submitt-button{
+  float: left;
+}
+
+.delete-button {
+  float: right;
+  padding: 0;
+}
+
+.delete-button mat-icon {
+  width: 100%;
+  height: 100%;
+  font-size: 40px;
+  margin: 0;
+}

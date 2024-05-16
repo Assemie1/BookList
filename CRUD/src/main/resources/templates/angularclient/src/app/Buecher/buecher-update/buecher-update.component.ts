@@ -7,6 +7,7 @@ import {
   MatDialogRef
 } from "@angular/material/dialog";
 import {DeleteModalComponent} from "../../delete-modal/delete-modal.component";
+import {UpdateModalComponent} from "../update-modal/update-modal.component";
 
 
 @Component({
@@ -25,7 +26,8 @@ export class BuecherUpdateComponent {
 
   object: string;
   verlage: number[];
-  dialogRef: MatDialogRef<DeleteModalComponent>;
+  // dialogRef: MatDialogRef<DeleteModalComponent>;
+  updateRef: MatDialogRef<UpdateModalComponent>;
 
   buchnummer: number;
 
@@ -52,20 +54,28 @@ export class BuecherUpdateComponent {
 
   }
 
-
-  openDialog(object: string): void {
-    this.dialogRef = this.dialog.open(DeleteModalComponent,{
-      data:object
+  openEdit(buch): void {
+    this.updateRef = this.dialog.open(UpdateModalComponent,{
+      data:this.buch
     })
-    this.dialogRef.componentInstance.deleteCallback = () => {
-      this.delete();
-    };
+
   }
 
-  delete(){
-    this.buecherService.delete((this.buchnummer))
-    this.router.navigate(['buecher/list'])
-  }
+  // openDialog(object: string): void {
+  //   this.dialogRef = this.dialog.open(DeleteModalComponent,{
+  //     data:object
+  //   })
+  //   this.dialogRef.componentInstance.deleteCallback = () => {
+  //     this.delete();
+  //   };
+  // }
+
+
+
+  // delete(){
+  //   this.buecherService.delete((this.buchnummer))
+  //   this.router.navigate(['buecher/list'])
+  // }
 
 
 }

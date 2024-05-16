@@ -22,7 +22,8 @@ a{
 }
 
 .seite-titel{
-  font-size: max(1.25vw, 20px)
+  font-size: max(1.25vw, 20px);
+  font-weight: bold;
 }
 
 @media (max-width: 599px) {

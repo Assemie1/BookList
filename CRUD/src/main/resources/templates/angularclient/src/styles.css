@@ -1,4 +1,45 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background: var(--mat-app-background-color)}
+body {
+  margin: 0;
+  font-family: "Ubuntu";
+  background: var(--mat-app-background-color)
+}
+
+.tabelle-titel{
+  font-size: max(0.75vw, 16px);
+  font-weight: bold;
+}
+
+.tabelle-text{
+  font-size: max(0.75vw, 16px);
+}
+
+.knopf-neuer {
+  font-size: max(0.75vw, 16px) !important;
+}
+
+mat-label {
+  font-size: max(0.75vw, 16px) !important;
+}
+
+input {
+  font-size: max(0.75vw, 16px) !important;
+}
+
+@media (max-width: 599px) {
+  .tabelle-titel, .tabelle-text{
+    font-size: max(2.5vw, 14px)
+  }
+  .knopf-neuer{
+    font-size: max(2.5vw, 14px) !important;
+  }
+  mat-label{
+    font-size: max(2.5vw, 14px)  !important;
+  }
+  input {
+    font-size: max(2.5vw, 14px) !important;
+  }
+
+}

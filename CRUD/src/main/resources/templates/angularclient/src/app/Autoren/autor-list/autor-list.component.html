@@ -6,23 +6,23 @@
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
   <ng-container matColumnDef="autornummer">
-    <th mat-header-cell *matHeaderCellDef> ID </th>
-    <td mat-cell *matCellDef="let element"> {{element.autornummer}} </td>
+    <th mat-header-cell *matHeaderCellDef class="tabelle-titel"> ID </th>
+    <td mat-cell *matCellDef="let element" class="tabelle-text"> {{element.autornummer}} </td>
   </ng-container>
 
   <ng-container matColumnDef="vorname">
-    <th mat-header-cell *matHeaderCellDef> Vorname </th>
-    <td mat-cell *matCellDef="let element"> {{element.vorname}} </td>
+    <th mat-header-cell *matHeaderCellDef class="tabelle-titel"> Vorname </th>
+    <td mat-cell *matCellDef="let element" class="tabelle-text"> {{element.vorname}} </td>
   </ng-container>
 
   <ng-container matColumnDef="nachname">
-    <th mat-header-cell *matHeaderCellDef> Nachname </th>
-    <td mat-cell *matCellDef="let element"> {{element.nachname}} </td>
+    <th mat-header-cell *matHeaderCellDef class="tabelle-titel"> Nachname </th>
+    <td mat-cell *matCellDef="let element" class="tabelle-text"> {{element.nachname}} </td>
   </ng-container>
 
   <ng-container matColumnDef="verlage">
-    <th mat-header-cell *matHeaderCellDef> Verlage </th>
-    <td mat-cell *matCellDef="let element">
+    <th mat-header-cell *matHeaderCellDef class="tabelle-titel"> Verlage </th>
+    <td mat-cell *matCellDef="let element" class="tabelle-text">
       <ul>
         <li *ngFor="let verlage of element.verlage">{{ verlage.name}}</li>
       </ul>
@@ -30,8 +30,8 @@
   </ng-container>
 
   <ng-container matColumnDef="autorbuecher">
-    <th mat-header-cell *matHeaderCellDef> Bücher </th>
-    <td mat-cell *matCellDef="let element">
+    <th mat-header-cell *matHeaderCellDef class="tabelle-titel"> Bücher </th>
+    <td mat-cell *matCellDef="let element" class="tabelle-text">
       <ul>
         <li *ngFor="let buecher of element.autorbuecher">{{ buecher.buchname}}</li>
       </ul>

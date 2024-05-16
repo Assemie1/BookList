@@ -9,3 +9,7 @@
 
   border-color: currentColor;
 }
+
+.tabelle-titel{
+  border-bottom: 1px solid;
+}

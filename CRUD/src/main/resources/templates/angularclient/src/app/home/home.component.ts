@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {Autor} from "../Autoren/model/autor";
 import {AutorServiceService} from "../Autoren/sevice/autor-service.service";
@@ -8,10 +8,11 @@ import {Router} from "@angular/router";
 import {Verlag} from "../Verlage/model/verlag";
 import {Buecher} from "../Buecher/buecher";
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrl: './home.component.css',
 })
 export class HomeComponent {
 

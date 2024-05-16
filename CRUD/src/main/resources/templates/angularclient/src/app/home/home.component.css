@@ -24,23 +24,24 @@ img {
   justify-content: center;
   background: rgba(0, 0, 0, 0.3);
   color: white;
-  font-size: 2vw;
+  font-size: 10%;
   font-weight: bolder;
   text-align: center;
 }
 
-.text {
-  font-size: 1.5em; /* Adjust as needed */
-  padding: 10px; /* Optional: Padding for the text */
+.uberschrift {
+  font-size: 3vw;
+  padding: 10px;
 }
 
 .neuen{
-  width: 100%;
+  width: 98%;
   margin: 1%;
 }
 
 .neuen mat-card-title{
-  font-size: 1.25vw;
+  font-size: 1.5vw;
+  font-weight: bold;
 }
 
 
@@ -48,6 +49,7 @@ img {
   display: flex;
   justify-content: space-between;
   margin: 1%;
+  flex-wrap: wrap;
 }
 
 mat-card-title{
@@ -57,6 +59,9 @@ mat-card-title{
 
 mat-card-content {
   flex: 1 0 auto;
+  padding-top: 1%;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 mat-card{
@@ -66,6 +71,17 @@ mat-card{
 .tabelle{
   max-height: 248px;
   overflow: hidden;
+}
+
+.tabelle-text, .tabelle-titel {
+  text-align: center;
+}
+.tabelle-titel{
+  border-bottom: 1px solid;
+}
+
+.center-text {
+  text-align: center;
 }
 
 mat-divider{
@@ -82,3 +98,24 @@ mat-divider{
 }
 
 
+@media (max-width: 599px) {
+  .Overview{
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  mat-card{
+    width: 100%;
+    margin-top: 5%;
+  }
+
+  .uberschrift {
+    font-size: 5vw;
+    padding: 10px;
+  }
+
+  .neuen mat-card-title{
+    font-size: 3vw;
+  }
+
+}

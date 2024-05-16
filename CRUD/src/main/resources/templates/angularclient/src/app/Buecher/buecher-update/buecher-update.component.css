@@ -4,9 +4,16 @@
 
 }
 
+.card-info{
+  min-width: 30%;
+}
+
+.card-beschreibung{
+  flex-grow: 1;
+}
+
 mat-card{
   margin: 1%;
-  min-width: 30%;
 }
 
 mat-card-title{

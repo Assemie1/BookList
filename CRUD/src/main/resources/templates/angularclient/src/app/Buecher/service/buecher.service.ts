@@ -58,7 +58,8 @@ export class BuecherService {
       buch.beschreibung = "";
     } else {
       this.update(buch, buchnummer).subscribe();
-      this.router.navigate(['buecher/list'])
+
+
     }
 
   }

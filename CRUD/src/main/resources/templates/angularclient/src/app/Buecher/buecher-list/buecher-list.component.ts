@@ -3,6 +3,7 @@ import {Buecher} from "../buecher";
 import {BuecherService} from "../service/buecher.service";
 import {MatTableDataSource} from "@angular/material/table";
 import {Router} from "@angular/router";
+import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 
 @Component({
   selector: 'app-buecher-list',
@@ -11,12 +12,19 @@ import {Router} from "@angular/router";
 })
 export class BuecherListComponent {
 
-  public displayColumn: string[] = ["buchnummer", "buchname","isbn", "autor", "verlagname"]
+  displayColumnDesktop: string[] = ['buchnummer', 'buchname', 'isbn', 'autor', 'verlagname'];
+  displayColumnMobile: string[] = ['buchname', 'autor'];
+  displayColumn: string[] = [];
+
   public dataSource: MatTableDataSource<Buecher>
   buecher: Buecher[];
   public buch;
 
-  constructor(private buecherService: BuecherService, private router: Router) {
+  constructor(
+    private buecherService: BuecherService,
+    private router: Router,
+    private breakpointObserver: BreakpointObserver,
+  ) {
     this.dataSource  = new MatTableDataSource<Buecher>([])
   }
 
@@ -27,6 +35,17 @@ export class BuecherListComponent {
       this.dataSource.data = data;
 
     });
+
+    this.breakpointObserver.observe([
+      Breakpoints.Handset,
+    ]).subscribe(result => {
+      if (result.matches) {
+        this.displayColumn = this.displayColumnMobile;
+      } else {
+        this.displayColumn = this.displayColumnDesktop;
+      }
+    });
+
   }
 
   applyFilter(event: Event){

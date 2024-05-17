@@ -37,6 +37,7 @@ import { WrongInputComponent } from './wrong-input/wrong-input.component';
 import {MatCard, MatCardActions, MatCardContent, MatCardImage, MatCardTitle} from "@angular/material/card";
 import { HomeComponent } from './home/home.component';
 import { UpdateModalComponent } from './Buecher/update-modal/update-modal.component';
+import {LayoutModule} from "@angular/cdk/layout";
 
 
 @NgModule({
@@ -80,6 +81,7 @@ import { UpdateModalComponent } from './Buecher/update-modal/update-modal.compon
         MatCardTitle,
         MatCardActions,
         MatCardImage,
+        LayoutModule,
     ],
   providers: [AutorServiceService, Verlagservice, provideAnimationsAsync()],
   bootstrap: [AppComponent]
